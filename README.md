@@ -8,29 +8,29 @@
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 
 Traditional online learning often leaves students overwhelmed with fragmented tutorials, unclear progression, and zero personalization. Static roadmaps don't account for a user's current skill level, time constraints, or specific project goals.
 
-## 💡 Solution
+##  Solution
 
 **LearnPath AI** bridges this gap by acting as a real-time AI learning architect. Input any target skill or domain, and LearnPath AI instantly analyzes the core dependencies to construct a structured, step-by-step roadmap complete with estimated timeframes, curating high-value resources and milestones.
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- **⚡ Dual Mode Execution:**
+- ** Dual Mode Execution:**
   - **AI Mode:** Connects to the **Google Gemini API** for real-time, dynamic curriculum generation.
   - **Demo Mode:** Uses built-in mock engine fallback so judges/testers can evaluate UI/UX without entering an API key.
-- **🎯 Dynamic Roadmap Generation:** Generates granular, phased learning paths customized to multiple input topics.
-- **📚 Curated Resources & Timeline:** Breaks down study goals into realistic time estimates and direct learning materials.
-- **📱 Responsive Interface:** High-performance, mobile-first Web UI built for seamless interaction.
-- **🚀 Instant Cloud Deployment:** Pre-configured for zero-friction setup on Vercel or Node.js environments.
+- ** Dynamic Roadmap Generation:** Generates granular, phased learning paths customized to multiple input topics.
+- ** Curated Resources & Timeline:** Breaks down study goals into realistic time estimates and direct learning materials.
+- ** Responsive Interface:** High-performance, mobile-first Web UI built for seamless interaction.
+- ** Instant Cloud Deployment:** Pre-configured for zero-friction setup on Vercel or Node.js environments.
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 ```mermaid
 ```mermaid
