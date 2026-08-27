@@ -1,0 +1,6 @@
+{
+  "name": "LearnPath-AI",
+  "description": "Personalized AI-powered learning path and roadmap generator with interactive steps, quizzes, AI tutor, and progress tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
