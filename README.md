@@ -1,102 +1,155 @@
-# 🎓 LearnPath AI – Personalized Roadmap & Learning Generator
+# 🧭 LearnPath AI
 
-> **Empowering learners with dynamic, structured, AI-generated study paths built around your exact goals.**
+### Your Goal. Your Skills. Your Dynamic Learning Journey.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Built with Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![Powered by Gemini AI](https://img.shields.io/badge/AI-Google%20Gemini-blue.svg)](https://deepmind.google/technologies/gemini/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express-4.x-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org)
+[![Gemini AI](https://img.shields.io/badge/Gemini_AI-Google-4285F4?style=flat-square&logo=google-gemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Tests](https://img.shields.io/badge/Tests-passing-brightgreen?style=flat-square)](#testing)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
----
-
-##  Problem Statement
-
-Traditional online learning often leaves students overwhelmed with fragmented tutorials, unclear progression, and zero personalization. Static roadmaps don't account for a user's current skill level, time constraints, or specific project goals.
-
-##  Solution
-
-**LearnPath AI** bridges this gap by acting as a real-time AI learning architect. Input any target skill or domain, and LearnPath AI instantly analyzes the core dependencies to construct a structured, step-by-step roadmap complete with estimated timeframes, curating high-value resources and milestones.
+> **LearnPath AI** is an AI-powered dynamic learning operating system that transforms a learner's goal into an executable, personalized, measurable journey. Powered by Google Gemini AI with built-in offline demo fallbacks, it turns scattered topics into structured, phased learning steps.
 
 ---
 
-##  Key Features
+## ✨ Features Highlights
 
-- ** Dual Mode Execution:**
-  - **AI Mode:** Connects to the **Google Gemini API** for real-time, dynamic curriculum generation.
-  - **Demo Mode:** Uses built-in mock engine fallback so judges/testers can evaluate UI/UX without entering an API key.
-- ** Dynamic Roadmap Generation:** Generates granular, phased learning paths customized to multiple input topics.
-- ** Curated Resources & Timeline:** Breaks down study goals into realistic time estimates and direct learning materials.
-- ** Responsive Interface:** High-performance, mobile-first Web UI built for seamless interaction.
-- ** Instant Cloud Deployment:** Pre-configured for zero-friction setup on Vercel or Node.js environments.
+| Feature | Technology |
+|---------|-----------|
+| **Dual Mode AI** | Gemini API Engine + Local Mock Engine fallback |
+| **Dynamic Roadmaps** | AI-generated learning paths customized to any goal |
+| **Prerequisite Ordering** | Phase-by-phase dependent learning modules |
+| **Resource Mapping** | Curated materials with targeted completion estimates |
+| **Responsive Web UI** | High-performance dashboard built with HTML5, CSS3 & ES6 JS |
+| **Zero Setup Run** | Works out-of-the-box offline or with a custom Gemini key |
 
 ---
 
-## System Architecture
+## How It Works — System Flow
 
 ```mermaid
+flowchart TD
+    subgraph Input["🎯 Learner Input"]
+        A[Type a goal<br/>or pick a target topic]
+    end
+
+    subgraph Intelligence["🧠 AI Layer"]
+        B{Gemini API Key?}
+        C[Google Gemini AI Engine<br/>dynamic curriculum generation]
+        D[Offline Demo Engine<br/>built-in fallback pathway]
+    end
+
+    subgraph Roadmap["🗺️ Personalized Roadmap"]
+        E[Structural JSON Parser<br/>prerequisites → phases → weeks]
+        F[Resource & Time Estimator]
+    end
+
+    subgraph Learning["📚 Output Engine"]
+        G[Step-by-Step UI Roadmap]
+        H[Curated Materials & Milestones]
+    end
+
+    A --> B
+
+
+---
+
+## Key Features
+
+### 🎯 Dynamic Roadmap Generation
+Transforms broad or niche target goals into phased, weekly milestones with dependent prerequisite ordering.
+
+### 🧠 Dual Engine Architecture
+Connects live to **Google Gemini API** for personalized AI curriculums, with an automatic fallback to an **Offline Demo Engine** if no key is provided.
+
+### 📚 Resource & Time Estimations
+Breaks down study goals into realistic completion timelines and maps targeted learning materials for each phase.
+
+### 📱 Responsive Web Interface
+Clean, mobile-first Web UI designed for fast loading, scannable reading, and interactive path tracking.
+
+---
+
+## Architecture
+
 ```mermaid
-graph TD
-    A[User Inputs Target Topic / Skill] --> B{API Key Provided?}
-    B -- Yes --> C[Gemini AI Orchestrator]
-    B -- No / Fallback --> D[Mock Learning Engine]
-    C --> E[Structured Roadmap Parser]
-    D --> E
-    E --> F[Render Interactive UI Roadmap]
-    F --> G[Resource Mapping & Timeline]
+flowchart TB
+    subgraph Frontend["🖥️ Client Layer"]
+        UI["Web Dashboard<br/>HTML5 · CSS3 · ES6 JS"]
+        Input["Goal Intake Form"]
+    end
 
-User Workflow Flowchart
-flowchart LR
-    Start([User Starts App]) --> Input[Enter Skill / Goal]
-    Input --> SelectMode[Select Mode]
-    SelectMode -->|Gemini Key Available| AIMode[Execute Gemini API Prompt]
-    SelectMode -->|No Key| DemoMode[Load Offline Demo Pathway]
-    AIMode --> Process[Parse JSON Response]
-    DemoMode --> Process
-    Process --> Display[Display Step-by-step Roadmap]
-    Display --> End([Learner Starts Course])
+    subgraph Backend["⚡ Application Server"]
+        Express["Express.js Server<br/>Port 3001"]
+        Controller["Roadmap Controller & Router"]
+    end
 
-Component,Technology Used
-Frontend,"HTML5, CSS3, JavaScript (ES6+)"
-Backend,"Node.js, Express.js"
-AI Engine,Google Gemini API
-Diagramming,Mermaid.js
-Deployment,Vercel
+    subgraph AI["🤖 Engine Layer"]
+        Gemini["Google Gemini AI Service"]
+        Mock["Offline Demo Engine"]
+        Parser["JSON Structuring Utility"]
+    end
 
-Quick Start
-1️. Prerequisites
-Ensure you have Node.js 18+ installed on your machine.
+    Input --> UI -->|HTTP POST| Express
+    Express --> Controller
+    Controller --> Gemini & Mock
+    Gemini & Mock --> Parser --> UI
 
-2️. Clone & Install
-git clone [https://github.com/snehakumari9696/LearnPath_LearningAI.git](https://github.com/snehakumari9696/LearnPath_LearningAI.git)
+Tech Stack:
+| Layer | Technology |
+|---|---|
+| **Backend** | Node.js (v18+) · Express.js |
+| **Frontend** | HTML5 · CSS3 · ES6 JavaScript |
+| **AI/ML** | Google Gemini API (`@google/generative-ai`) |
+| **Diagramming** | Mermaid.js |
+| **Deployment** | Vercel / Render |
+
+Installation:
+# Clone the repository
+git clone https://github.com/snehakumari9696/LearnPath_LearningAI.git
 cd LearnPath_LearningAI
+
+# Install Node.js dependencies
 npm install
 
-3. Environment Setup
-Create a .env file in the root directory:
-PORT=3000
-GEMINI_API_KEY=your_google_gemini_api_key_here
+Project Structure:
+LearnPath_LearningAI/
+├── public/                 # Web interface assets
+│   ├── index.html          # Dashboard HTML
+│   ├── css/                # Custom styling
+│   └── js/                 # Client logic & renderers
+├── src/
+│   ├── routes/             # Express API endpoints
+│   ├── services/           # Gemini AI & mock fallback logic
+│   └── utils/              # Parsers & helpers
+├── .env.example            # Environment template
+├── server.js               # Express server entry point
+├── package.json            # Node project configuration
+└── README.md               # Project documentation
 
-4️. Run Application
-Bash
-# Run in development mode
-npm run dev
+License:
+MIT License
 
-# Or run standard node server
-npm start
-Open your browser and navigate to http://localhost:3000.
+Copyright (c) 2026 Sneha Kumari
 
-Deployment
-Deploying to Vercel
-Import repository snehakumari9696/LearnPath_LearningAI into Vercel.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Under Environment Variables, add:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-GEMINI_API_KEY : <Your-Gemini-API-Key>
-
-Click Deploy.
-
-##  License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-    F --> G[Resource Mapping & Timeline]
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+    B -- "Yes" --> C --> E
+    B -- "No / Fallback" --> D --> E
+    E --> F --> G --> H
