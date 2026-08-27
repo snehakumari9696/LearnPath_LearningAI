@@ -32,40 +32,28 @@ Executive Overview
 ​ Developer-Ready APIs: Modular application code separating AI prompt construction, data persistence, and UI presentation.
 
 ​ Detailed System Architecture
-​The following block diagram maps out the data flow across the presentation, backend, intelligence, and storage tiers.
-========================================================================================
-                          TIER 1: USER INTERFACE (PRESENTATION LAYER)
-========================================================================================
-[ Web Interface / Client Workspace ] ---> [ Form Inputs: Goal, Skill Level, Hours/Day ]
-                                                      |
-                                                      v
-========================================================================================
-                     TIER 2: APPLICATION BACKEND (ROUTING & MIDDLEWARE)
-========================================================================================
-                                     [ API Gateway / Router ]
-                                              |
-        +-------------------------------------+-----------------------------------+
-        |                                     |                                   |
-        v                                     v                                   v
-[ Auth & Session Handler ]         [ Prompt Engineering Engine ]       [ Pacing & Scheduler Core ]
-                                              |                                   |
-                                              v                                   |
-========================================================================================  |
-                      TIER 3: INTELLIGENCE & LLM ORCHESTRATION LAYER              |
-========================================================================================  |
-                     [ Generative LLM Core: Google Gemini / OpenAI ]              |
-                                              ^                                   |
-                                              |                                   |
-                                     [ RAG Vector Indexer ]                       |
-                                              |                                   |
-========================================================================================  |
-                            TIER 4: DATA & PERSISTENCE LAYER                      |
-========================================================================================  |
-[ Vector DB (ChromaDB/FAISS) ] <--------------+----------------------------------+   |
-                                              |                                  |   |
-                                              v                                  v   v
-                             [( Database: User Profiles, Schedules, Progress Metrics )]
 
+​The following block diagram maps out the data flow across the presentation, backend, intelligence, and storage tiers.
+The LearnPath AI platform is engineered using a decoupled, four-tier web architecture. The backend service acts as a central coordinator, managing data flow between the user interface, external Large Language Models (LLMs), contextual data stores, and local session databases.
+Tier 1: User Interface & Presentation Layer
+The front-end client serves as the user's primary interface. It is responsible for gathering learning parameters and rendering real-time progress updates.
+User Input Module: Captures target skills, starting experience level (Beginner, Intermediate, Advanced), available daily learning hours, and preferred learning styles.
+Interactive Dashboard: Displays generated learning roadmaps, day-by-day milestone checklists, resource recommendations, and overall skill completion metrics.
+State Management: Maintains local user states to seamlessly sync completion status changes back to the server.
+Tier 2: Application Server & Processing Layer
+The backend server handles application routing, business logic execution, request processing, and data transformation.
+API Gateway & Routing: Exposes modular RESTful endpoints to process client requests, deliver generated path payloads, and update milestone logs.
+Prompt Engineering Engine: Ingests user input and injects it into customized system templates designed to enforce strict structural constraints and safety guardrails.
+JSON Schema Validation Core: Intercepts generated outputs from the AI layer to verify structural integrity, ensuring data can be reliably parsed by the front-end dashboard.
+Pacing & Schedule Controller: Dynamically recalculates upcoming milestone dates based on real-time completion logs and user learning velocity.
+Tier 3: Intelligence & AI Orchestration Layer
+The intelligence layer handles dynamic path generation, contextual resource retrieval, and curriculum formatting.
+Google Gemini LLM Engine: Processes contextually enriched system prompts to generate structured day-by-day modules, key objectives, and practical project ideas.
+RAG Retrieval Engine: Interfaces with vector database stores to retrieve reference material, documented syllabi, and curated learning links to reduce model hallucination.
+Tier 4: Data & Persistence Layer
+The storage layer handles persistent records for user profiles, generated learning paths, and indexed domain knowledge.
+Relational Database: Manages user credentials, active roadmaps, individual module completion flags, and historical analytics.
+Vector Store: Keeps vectorized index embeddings of reference domain documentation, topic breakdowns, and recommended public resources.
 Architectural Subsystem Breakdown
 Subsystem Primary Responsibilities Technical Components
 Presentation Tier User onboarding, interactive roadmap viewing, milestone completion logging. Streamlit / HTML5 / CSS3 / JavaScript
@@ -74,32 +62,16 @@ Intelligence Tier Dynamic prompt evaluation, structured content generation, cont
 Data Tier Storing user session data, progress analytics, vector index for domain resources. SQLite / PostgreSQL, FAISS / ChromaDB
 
 End-To-End Project Workflow
-[ START: User Accesses Platform ]
-              │
-              ▼
-[ Input Goal, Level & Daily Hours ] ──► [ Validate Inputs & Calculate Constraint Matrix ]
-                                                        │
-                                                        ▼
-                                       [ Context Retrieval Required? ]
-                                            ├── YES ──► [ Query Vector DB for Syllabi ]
-                                            │                     │
-                                            └── NO ───────────────┤
-                                                                  │
-                                                                  ▼
-[ Store Session & Analytics ] ◄── [ Parse Output JSON ] ◄── [ Execute LLM Prompt Query ]
-              │
-              ▼
-[ Render Interactive Roadmap ] ──► [ User Executes & Marks Daily Tasks ]
-                                                        │
-                                                        ▼
-                                            [ All Tasks Complete? ]
-                                                ├── NO ──► [ Recalculate Pacing ]
-                                                │                     │
-                                                └── YES ──────────────┤
-                                                                      │
-                                                                      ▼
-                                                       [ END: Goal Achieved!  ]
-
+Phase 1: Parameter Intake
+​The user inputs their target skill (e.g., "Data Science"), current experience level, total duration, and daily time commitment. The system validates these parameters on the client side before sending them to the backend server.
+​Phase 2: Context Enrichment & Prompt Assembly
+​The backend packages the input parameters and checks if domain-specific context is needed. If required, it queries a vector database to retrieve reference syllabi and verified resource links. It then merges the user inputs, context, and structural formatting guardrails into a standardized system prompt.
+​Phase 3: AI Generation & Schema Validation
+​The system dispatches the prompt to the Google Gemini API, which generates a day-by-day learning schedule. The backend intercepts the raw output and runs a schema check to verify JSON structural integrity. If malformed, an automatic reprompting routine fixes the output before displaying it.
+​Phase 4: Delivery & Workspace Render
+​Once validated, the system saves the roadmap and individual milestones to the database. It then parses the payload to render an interactive dashboard with daily task checklists and progress trackers.
+​Phase 5: Tracking & Adaptive Pacing Loop
+​As the user completes daily tasks, the system logs progress metrics in real time. If the user misses deadlines or moves faster than planned, the pacing controller dynamically redistributes the remaining milestones across future days until the goal is achieved.
 Comprehensive Tech Stack
 ​Frontend: Streamlit / Web Client UI (Interactive dashboards, milestone views, dynamic input forms)
 ​Backend Framework: Python 3.10+ (Core orchestration, REST endpoints, logic handlers)
