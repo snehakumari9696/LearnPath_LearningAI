@@ -1,504 +1,410 @@
-# 🧭 LearnPath AI
+# 🎯 LearnPath AI
 
-### Your Goal. Your Skills. Your Adaptive Learning Journey.
+### Personalized AI-Powered Learning Path Generator with Interactive Study Tools
 
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-05F?style=flat-square&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Tests](https://img.shields.io/badge/Tests-112%20passing-brightgreen?style=flat-square)](#testing)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Socket.io](https://img.shields.io/badge/Socket.io-4-010101?style=flat-square&logo=socket.io&logoColor=white)](https://socket.io)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-> **LearnPath AI** is an AI-powered adaptive learning operating system that transforms a learner's goal into an executable, personalized, measurable journey. It is not a course recommender — it is an AI learning companion that continuously adapts.
+> **LearnPath AI** is an AI-powered personalized learning platform that generates custom roadmaps, interactive quizzes, flashcards, and a 24/7 AI mentor — all in one app. Built with React 19, TypeScript, Express.js, Socket.io, and Google Gemini AI.
 
 ---
 
-## ✨ Frontend Highlights
+## ✨ Key Features
 
-| Feature | Technology |
-|---------|-----------|
-| **3D Robot Background** | Three.js / React Three Fiber — eyes track your cursor |
-| **Custom Cursor** | Spring-physics dot + trailing ring, hover effects |
-| **Liquid Page Transitions** | AnimatePresence mode="wait" with blur + slide |
-| **Staggered Animations** | Spring-physics entrances on all pages |
-| **Glassmorphism** | Cursor-proximity glow, backdrop blur, gradient borders |
-| **Aurora Canvas** | Nebula blobs, parallax starfield, shooting stars |
-| **Magnetic Buttons** | Cursor-tracking pull + spring compression |
-
----
-
-## How It Works — System Flow
-
-```mermaid
-flowchart TD
-    subgraph Input["🎯 Learner Input"]
-        A[Type a goal<br/>or pick a demo persona]
-    end
-
-    subgraph Extraction["🧠 AI Understanding"]
-        B[NLU Extraction<br/>goal · role · skills · constraints]
-        C[Learner Digital Twin<br/>dynamic profile with confidence scores]
-    end
-
-    subgraph Intelligence["📊 Intelligence Layer"]
-        D[Skill Graph<br/>62 skills · 80+ prerequisite edges]
-        E[Gap Analysis<br/>what's missing vs target role]
-        F[Hybrid Recommender<br/>8 explainable factors · MMR diversity]
-    end
-
-    subgraph Roadmap["🗺️ Personalized Roadmap"]
-        G[Constrained Scheduler<br/>prerequisites → phases → weeks]
-        H[Balanced · Accelerated · Flexible modes]
-    end
-
-    subgraph Learning["📚 Active Learning"]
-        I[Today's Mission<br/>sized to weekly hours]
-        J[Assessments<br/>MCQ · multi-select · scenario]
-        K[AI Coach<br/>RAG-grounded answers]
-    end
-
-    subgraph Adaptation["🔄 Adaptive Loop"]
-        L{Score?}
-        M["Weak < 60%<br/>→ Remediation phase"]
-        N["Pass 60–84%<br/>→ Continue"]
-        O["Strong ≥ 85%<br/>→ Accelerate"]
-        P[Feedback loop<br/>likes · skips · difficulty]
-    end
-
-    subgraph Gamification["🏆 LearnPath XP"]
-        Q[XP Ledger<br/>immutable transactions]
-        R[Levels · Ranks · Streaks]
-        S[Badges · Weekly Challenges]
-        T[Fair Leaderboards<br/>Weekly · Monthly · Mastery]
-    end
-
-    A --> B --> C --> D --> E --> F --> G --> H
-    H --> I --> J --> L
-    L -- "Weak" --> M --> G
-    L -- "Pass" --> N --> I
-    L -- "Strong" --> O --> G
-    I --> P --> F
-    J --> Q --> R --> S --> T
-    K -.-> C
-    K -.-> E
-    K -.-> G
-```
+| Feature | Description |
+|---------|-------------|
+| 🗺️ **AI Roadmap Generator** | 3-step wizard generates personalized milestone-driven curricula via Gemini 3.7 Flash with intelligent offline fallback |
+| 🧠 **AI Mentor Chat** | 24/7 chat tutor with speech synthesis, code snippet sharing, and concept explanations |
+| 📝 **Dynamic Quiz Engine** | Real-time AI-generated multiple-choice quizzes with score tracking and XP rewards |
+| 🃏 **Flashcard Studio** | Flip-card study system with AI deck generation, keyboard navigation, and mastery tracking |
+| 💬 **Live Discussions** | Real-time Socket.io study rooms with code sharing, reactions, and typing indicators |
+| 🏆 **Leaderboard** | XP-based global rankings with track filtering (AI, Full-Stack, Data Science, DevOps) |
+| 📊 **Dashboard** | Stats overview: streaks, badges, saved roadmaps, quizzes passed, flashcards mastered |
+| 🏅 **Badge System** | 12 achievement badges across 7 categories with rarity tiers (Bronze → Diamond) |
+| 🔐 **Auth System** | Register/login with session tokens, feature gating for protected pages |
+| 🎨 **Animated UI** | Framer Motion page transitions, confetti effects, canvas particle backgrounds |
 
 ---
 
-## What Makes It Different
-
-| Generic Recommenders | LearnPath AI |
-|---|---|
-| "You might also like…" | Skill gap analysis → prerequisite-aware sequencing |
-| One-size-fits-all paths | Adaptive: weak scores insert remediation, strong scores accelerate |
-| No progress tracking | Daily mission, streaks, XP ledger, career readiness gauge |
-| No explainability | Every recommendation has machine-readable "Why this?" reasons |
-| Requires internet | Fully offline — local LLM fallback, TF-IDF embeddings, zero API keys |
-| Static content | Continuously adapts from assessments, feedback, and behavior |
-
----
-
-## Key Features
-
-### 🎯 Smart Onboarding
-Conversational goal intake with an editable "AI Understanding" panel. One-click demo personas (ML Engineer, Data Scientist, Cybersecurity Analyst, Cloud Engineer).
-
-### 📊 Skill Intelligence
-62-skill ontology with prerequisite closure, topological ordering, gap heatmap, radar chart, and before/after proficiency bars.
-
-### 🗺️ Adaptive Roadmap
-Constrained scheduling: prerequisites → phases → weeks → deadline feasibility. Three modes — Balanced, Accelerated, Flexible — with live re-planning.
-
-### 🎯 Explainable Recommendations
-8-factor scoring (semantic relevance, gap coverage, goal alignment, prerequisite fit, difficulty fit, preference fit, time fit, feedback signal) with MMR diversity. Every result carries a "Why this?" explanation.
-
-### 🧠 Knowledge Assessments
-13 knowledge checks with MCQ/multi-select/scenario/coding questions. Concept-level weak-area detection feeds directly into the adaptive engine.
-
-### 💬 AI Coach
-RAG-grounded assistant that knows your profile, roadmap, gaps, and assessment history. Honest when it doesn't know.
-
-### 🚀 Career Readiness
-0–100 readiness index across Technical Skills, Projects, Problem Solving, Deployment, and Portfolio. "What's needed for 90%?" simulator.
-
-### 🏆 LearnPath XP
-Outcome-based gamification: XP ledger, levels, ranks, streaks, 18 badges, weekly challenges. Anti-farm protected — server is the only XP authority.
-
-### 🏅 Fair Leaderboards
-All-Time, Weekly, Monthly, Skill, and Mastery boards. Weekly & monthly XP resets so new learners can always compete. Opt-out privacy toggle.
-
----
-
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart TB
-    subgraph Frontend["🖥️ Frontend — React + Framer Motion"]
-        React["React 19 + Vite<br/>14 page components"]
-        Framer["Framer Motion<br/>spring physics · AnimatePresence"]
-        Three["Three.js / R3F<br/>3D robot · cursor tracking"]
-        Canvas["Canvas<br/>aurora nebula · starfield"]
-        Cursor["Custom Cursor<br/>spring-physics dot + ring"]
+    subgraph Frontend["🖥️ Frontend — React 19 + TypeScript + Vite"]
+        App["App.tsx\nSPA Router + AnimatePresence"]
+        Pages["11 Page Components\nHome · Auth · Generator · Roadmap\nQuiz · Flashcards · Mentor\nDiscussions · Leaderboard\nExplore · Dashboard"]
+        Components["Reusable Components\nNavbar · AuthModal · BadgeUnlockToast\nBackgroundVideo · SkillIcons"]
+        Motion["Framer Motion\nSpring Physics · Page Transitions"]
     end
 
-    subgraph Backend["⚡ Backend — FastAPI"]
-        API["app/server.py<br/>JSON API + SPA server"]
-        Services["Services<br/>learner · roadmap · recommendation<br/>assessment · gamification"]
-        Engine["Engine<br/>composition root"]
+    subgraph Backend["⚡ Backend — Express.js + Socket.io"]
+        Server["server.ts\nExpress + HTTP Server"]
+        AuthAPI["Auth Routes\nRegister · Login · Session · Profile"]
+        AIAPI["AI Routes\nRoadmap · Tutor · Quiz · Flashcard\nGeneration via Gemini 3.7 Flash"]
+        LeaderboardAPI["Leaderboard Routes\nSync · Query · Track Filtering"]
+        SocketIO["Socket.io\nReal-time Chat · Presence · Reactions"]
     end
 
-    subgraph AI["🤖 Hybrid AI Layer"]
-        LLM["LLMProvider<br/>Local (offline) | OpenAI"]
-        Embed["EmbeddingProvider<br/>TF-IDF | sentence-transformers"]
-        Graph["SkillGraph<br/>NetworkX DAG · 62 skills"]
-        Rec["Hybrid Recommender<br/>8 factors + MMR"]
+    subgraph AI["🤖 AI Layer — Google Gemini"]
+        Gemini["GoogleGenAI Client\n(gemini-3.7-flash model)"]
+        Fallback["Intelligent Fallback Engine\nDomain-aware curriculum synthesis\nwhen API is unavailable"]
     end
 
     subgraph Data["💾 Data Layer"]
-        SQLite["SQLite<br/>learner digital twin"]
-        Catalog["data/<br/>courses · projects · resources · assessments"]
+        UserDB["In-Memory User Store\nSessions · Profiles · Passwords"]
+        LeaderboardDB["In-Memory Leaderboard\nSeeded Demo Users"]
+        ChatDB["In-Memory Chat Store\nRoom Messages · Active Users"]
+        LocalStorage["Browser localStorage\nRoadmaps · Stats · Badges · Decks"]
     end
 
-    React --> Framer
-    React --> Three
-    React --> Canvas
-    React --> Cursor
-    React -->|fetch| API
-    API --> Engine
-    Engine --> Services
-    Engine --> AI
-    Services --> SQLite
-    AI --> Catalog
-    SQLite --> Catalog
+    App --> Pages --> Components
+    Pages --> |fetch API| Server
+    Components --> Motion
+
+    Server --> AuthAPI
+    Server --> AIAPI
+    Server --> LeaderboardAPI
+    Server --> SocketIO
+
+    AIAPI --> Gemini
+    Gemini -.->|on failure| Fallback
+
+    AuthAPI --> UserDB
+    LeaderboardAPI --> LeaderboardDB
+    SocketIO --> ChatDB
+    Pages --> LocalStorage
 ```
 
 ---
 
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| **Backend** | Python 3.11 · FastAPI · Uvicorn · scikit-learn · NetworkX · Pandas · NumPy · SQLite |
-| **Frontend** | React 19 · Vite · Framer Motion · React Router · React Three Fiber · Three.js |
-| **3D/Animation** | Spring physics · AnimatePresence · useMotionValue · useSpring · custom cursor |
-| **AI/ML** | TF-IDF embeddings · NetworkX DAG · 8-factor recommender · MMR diversity · RAG coaching |
-| **Testing** | pytest · httpx · 112 tests incl. full end-to-end FastAPI flow |
-| **Optional** | OpenAI API · sentence-transformers |
-
----
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/rishabhverma007/LearnPath-AI.git
-cd LearnPath-AI
-
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Install React frontend dependencies
-cd frontend-v2
-npm install
-
-# Build the React frontend
-npm run build
-cd ..
-```
-
----
-
-## Configuration
-
-Copy `.env.example` to `.env` — all values are optional (the app runs fully offline):
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Default | Description |
-|---|---|---|
-| `LLM_PROVIDER` | `local` | `local` (offline) or `openai` |
-| `OPENAI_API_KEY` | — | API key for OpenAI (enables richer coaching) |
-| `OPENAI_MODEL` | `gpt-4o-mini` | Model name |
-| `EMBEDDING_PROVIDER` | `tfidf` | `tfidf` (offline) or `sentence-transformers` |
-| `DATABASE_PATH` | `data/learnpath.db` | SQLite database path |
-
----
-
-## Running
-
-```bash
-# Start the server (serves both API and React frontend)
-python -m uvicorn app.server:app --port 8765
-```
-
-Open **http://localhost:8765** in your browser. No API keys required.
-
-1. Click **"Try a demo persona"** or sign up
-2. Pick a persona or type your own goal
-3. Explore your personalized journey
-
-### Development Mode
-
-```bash
-# Terminal 1: Backend
-python -m uvicorn app.server:app --port 8765
-
-# Terminal 2: React dev server (with hot reload)
-cd frontend-v2
-npm run dev
-```
-
-The dev server runs on port 5173 with proxy to the backend.
-
----
-
-## Project Structure
-
-```
-LearnPath-AI/
-├── app/
-│   ├── server.py              # FastAPI: JSON API + SPA server
-│   ├── config.py              # Weights, thresholds, modes, personas
-│   ├── ai/
-│   │   ├── embeddings.py      # TF-IDF | sentence-transformers
-│   │   ├── llm.py             # Local (offline) | OpenAI provider
-│   │   ├── extraction.py      # NLU profile extraction
-│   │   ├── prompts.py         # Centralized prompt templates
-│   │   └── rag.py             # Knowledge base + Coach service
-│   ├── ml/
-│   │   ├── recommender.py     # 8-factor scoring + MMR diversity
-│   │   ├── path_optimizer.py  # Roadmap generation + adaptive remediation
-│   │   ├── career_readiness.py
-│   │   ├── daily_mission.py
-│   │   ├── what_if.py
-│   │   ├── gamification.py    # XP · levels · ranks · streaks · badges
-│   │   └── evaluation.py      # Synthetic benchmark metrics
-│   ├── graph/
-│   │   └── skill_graph.py     # NetworkX DAG: 62 skills, 80+ edges
-│   ├── data/                  # Catalogue loader + models
-│   ├── database/              # SQLite repository + Learner Digital Twin
-│   ├── services/              # Composition root + service layer
-│   └── utils/                 # Logging, helpers
-├── data/
-│   ├── skills.csv             # 62 skills with prerequisites
-│   ├── career_roles.csv       # 10 career roles
-│   ├── courses.csv            # 52 courses with verified URLs
-│   ├── projects.csv           # 25 hands-on projects
-│   ├── resources.csv          # 31 micro-resources
-│   └── assessments.json       # 13 knowledge checks (52 questions)
-├── frontend-v2/               # React + Framer Motion frontend
-│   ├── src/
-│   │   ├── components/        # 10 reusable components
-│   │   │   ├── GlassCard.jsx      # Cursor-glow glassmorphism card
-│   │   │   ├── MagneticButton.jsx # Spring-physics magnetic hover
-│   │   │   ├── ScrollReveal.jsx   # IntersectionObserver + spring
-│   │   │   ├── TextStagger.jsx    # Word-by-word text reveal
-│   │   │   ├── BackgroundCanvas.jsx # Aurora + starfield canvas
-│   │   │   ├── Robot3D.jsx        # Three.js 3D robot
-│   │   │   ├── CustomCursor.jsx   # Spring-physics cursor
-│   │   │   ├── PageTransition.jsx # Liquid page transitions
-│   │   │   ├── Charts.jsx         # SVG charts (radar, gauge, line, bar)
-│   │   │   ├── TopBar.jsx         # Minimal brand + learner chip
-│   │   │   ├── Toast.jsx          # Animated notifications
-│   │   │   └── BackButton.jsx     # Navigation back button
-│   │   ├── pages/             # 14 page components
-│   │   │   ├── Landing.jsx        # Hero + demo personas
-│   │   │   ├── Auth.jsx           # Sign In / Sign Up
-│   │   │   ├── Onboarding.jsx     # Goal analyzer + AI understanding
-│   │   │   ├── PageGrid.jsx       # 10-card navigation hub
-│   │   │   ├── Journey.jsx        # Roadmap with phases
-│   │   │   ├── Skills.jsx         # Gap analysis + radar chart
-│   │   │   ├── Recommendations.jsx # Ranked items + explanations
-│   │   │   ├── Coach.jsx          # AI chat interface
-│   │   │   ├── Assessments.jsx    # Knowledge checks
-│   │   │   ├── Dashboard.jsx      # Mission + gamification stats
-│   │   │   ├── Career.jsx         # Readiness gauge + what-if
-│   │   │   ├── Achievements.jsx   # Badges + challenges
-│   │   │   ├── Leaderboard.jsx    # Rankings table
-│   │   │   └── Settings.jsx       # Profile editor
-│   │   ├── animations.js      # Spring physics config
-│   │   ├── api.jsx            # API client + React Context
-│   │   ├── App.jsx            # Root layout + routing
-│   │   ├── index.css          # All styles
-│   │   └── main.jsx           # Entry point
-│   ├── vite.config.js         # Vite config + API proxy
-│   └── package.json           # Dependencies
-├── tests/                     # 112 pytest tests
-├── requirements.txt
-├── .env.example
-└── README.md
-```
-
----
-
-## API Reference
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/api/auth/signup` | POST | Create account |
-| `/api/auth/signin` | POST | Sign in |
-| `/api/auth/guest` | POST | One-click demo mode |
-| `/api/auth/me` | GET | Current user |
-| `/api/auth/signout` | POST | Sign out |
-| `/api/meta` | GET | System metadata |
-| `/api/profile/analyze` | POST | NLU goal extraction |
-| `/api/learners` | POST | Create learner digital twin |
-| `/api/learners/{id}` | GET/PUT/DELETE | Learner CRUD |
-| `/api/learners/{id}/roadmap` | POST/GET | Generate / retrieve roadmap |
-| `/api/learners/{id}/recommendations` | POST | Ranked recommendations |
-| `/api/learners/{id}/skills` | GET | Skill profile + gaps |
-| `/api/learners/{id}/items/complete` | POST | Mark item complete (awards XP) |
-| `/api/learners/{id}/feedback` | POST | Like / skip / difficulty feedback |
-| `/api/learners/{id}/coach` | POST | AI Coach conversation |
-| `/api/learners/{id}/mission` | GET | Today's learning mission |
-| `/api/learners/{id}/career` | GET | Career readiness index |
-| `/api/learners/{id}/whatif` | POST | What-if role simulator |
-| `/api/assessments/{id}` | GET | Fetch assessment |
-| `/api/learners/{id}/assessments/{id}/submit` | POST | Submit + grade assessment |
-| `/api/learners/{id}/micro-lesson` | POST | Generate micro-lesson |
-| `/api/learners/{id}/gamification` | GET | XP, level, rank, streak, badges |
-| `/api/learners/{id}/xp-history` | GET | XP transaction ledger |
-| `/api/learners/{id}/badges` | GET | Earned badges |
-| `/api/learners/{id}/streak` | GET | Streak details |
-| `/api/leaderboard` | GET | ?scope=global\|weekly\|monthly\|skill\|mastery |
-| `/api/challenges/current` | GET | Weekly challenges |
-| `/api/challenges/{id}/claim` | POST | Claim challenge reward |
-| `/api/learners/{id}/mission/complete` | POST | Complete daily mission |
-| `/api/health` | GET | Health check |
-
----
-
-## Testing
-
-```bash
-python -m pytest tests/ -v
-```
-
-**112 tests** covering:
-- Profile extraction & validation
-- Recommendation ranking, explanations & diversity
-- Prerequisite ordering & deadline feasibility
-- Assessment grading (MCQ, multi-select, malformed input)
-- Adaptive remediation & acceleration
-- LLM/embedding fallback & coach honesty
-- XP calculation, difficulty multipliers, anti-farming
-- Badge conditions, streak math, leaderboards
-- Challenge completion & claim gating
-- Full end-to-end FastAPI flow (persona → roadmap → skills → recs → coach → assessment → adapt → career)
-
----
-
-## Recommendation Scoring
-
-```
-Score = Σ wᵢ · factorᵢ
-```
-
-| Factor | Weight | What It Measures |
-|---|---|---|
-| Semantic Relevance | 0.30 | TF-IDF cosine similarity to goal + role |
-| Skill-Gap Coverage | 0.20 | How many missing/weak skills it addresses |
-| Goal Alignment | 0.15 | Contribution to role competency map |
-| Prerequisite Fit | 0.10 | Learner readiness for this item |
-| Difficulty Fit | 0.10 | Distance from learner's estimated level |
-| Preference Fit | 0.05 | Content format vs learning preference |
-| Time Fit | 0.05 | Duration vs weekly time budget |
-| Feedback Signal | 0.05 | Historical likes/skips/completions |
-
-MMR diversification (λ=0.7) ensures the top-K mixes courses, projects, resources, and assessments.
-
----
-
-## Adaptive Engine
+## 🔄 System Flow
 
 ```mermaid
 flowchart TD
-    A[Assessment taken] --> B{Score}
-    B -- "< 60% Weak" --> C[Weak concepts detected]
-    C --> D[Remediation phase inserted]
-    D --> D1[Micro-lesson] --> D2[Practice resource] --> D3[Re-assessment]
-    D3 --> A
-    B -- "60-84% Pass" --> E[Continue roadmap]
-    B -- ">= 85% Strong" --> F[Redundancy removed · Accelerate]
-    E --> G[Feedback updates preference weights]
-    F --> G
-    G --> H[Future recommendations adapt]
+    subgraph Input["🎯 User Input"]
+        A[Type a skill goal<br/>or pick a preset track]
+    end
+
+    subgraph Generator["🔧 Roadmap Generator"]
+        B[3-Step Wizard<br/>Skill → Level → Schedule]
+        C[Gemini 3.7 Flash API<br/>or Offline Fallback Engine]
+    end
+
+    subgraph Roadmap["🗺️ Generated Roadmap"]
+        D[Phase-by-phase curriculum<br/>Topics · Projects · Resources]
+        E[Interactive Milestone Tracker<br/>Mark phases complete]
+    end
+
+    subgraph Learning["📚 Active Learning Tools"]
+        F[AI Mentor Chat<br/>Concept explanations · Code samples]
+        G[Quiz Generator<br/>Dynamic MCQ · Score & XP]
+        H[Flashcard Studio<br/>Flip cards · AI deck generation]
+    end
+
+    subgraph Social["💬 Social Features"]
+        I[Real-time Discussions<br/>Socket.io study rooms]
+        J[Leaderboard<br/>XP rankings · Track filtering]
+    end
+
+    subgraph Gamification["🏆 Gamification"]
+        K[XP Ledger<br/>+150 per roadmap · +50 per phase]
+        L[12 Badges<br/>Bronze → Diamond rarity tiers]
+        M[Streaks<br/>Daily study consistency]
+    end
+
+    A --> B --> C --> D --> E
+    D --> F
+    D --> G
+    D --> H
+    E --> K --> L --> M
+    G --> K
+    H --> K
+    F --> I
+    I --> J
 ```
 
 ---
 
-## Gamification Pipeline
+## 🗂️ Project Structure
+
+```
+LearnPath-AI/
+├── server.ts                    # Express.js backend + Socket.io + Gemini AI
+├── package.json                 # Dependencies & scripts
+├── tsconfig.json                # TypeScript config (ES2022, JSX, bundler)
+├── vite.config.ts               # Vite + React + Tailwind CSS 4
+├── index.html                   # HTML entry point (Plus Jakarta Sans)
+├── .env.example                 # GEMINI_API_KEY (optional)
+├── metadata.json                # Freebuff project metadata
+│
+└── src/
+    ├── main.tsx                  # React root mount (StrictMode)
+    ├── App.tsx                   # SPA router, auth gating, state management
+    ├── index.css                 # Tailwind CSS 4 import
+    ├── types.ts                  # All TypeScript interfaces & type definitions
+    │
+    ├── components/
+    │   ├── Navbar.tsx            # Global navigation bar with auth state
+    │   ├── AuthModal.tsx         # Login/Register modal with feature gating
+    │   ├── BadgeUnlockToast.tsx  # Confetti badge unlock notification
+    │   ├── BackgroundVideo.tsx   # Cloudinary hero video with autoplay retry
+    │   ├── HeroContent.tsx       # Legacy hero content (unused)
+    │   ├── KeySkillsSection.tsx  # Legacy skill cards (unused)
+    │   ├── SkillIcons.tsx        # Custom SVG skill icons (unused)
+    │   ├── SkillModal.tsx        # Legacy skill detail modal (unused)
+    │   ├── TechBackgroundCanvas.tsx  # Legacy canvas background (unused)
+    │   ├── TrialModal.tsx        # Legacy trial signup modal (unused)
+    │   │
+    │   └── pages/
+    │       ├── HomePage.tsx      # Landing page with hero, search, skill tracks
+    │       ├── AuthPage.tsx      # Full-page auth (sign in / sign up)
+    │       ├── GeneratorPage.tsx # 3-step roadmap generation wizard
+    │       ├── RoadmapPage.tsx   # Interactive milestone tracker
+    │       ├── QuizPage.tsx      # AI quiz engine with keyboard shortcuts
+    │       ├── FlashcardsPage.tsx # Flip-card study system + AI deck gen
+    │       ├── MentorPage.tsx    # AI chat tutor with speech synthesis
+    │       ├── DiscussionsPage.tsx # Socket.io real-time study rooms
+    │       ├── LeaderboardPage.tsx # XP rankings with track filters
+    │       ├── ExplorePage.tsx   # Curated roadmap catalog
+    │       └── DashboardPage.tsx # Stats, badges, saved roadmaps, certs
+    │
+    └── data/
+        ├── mockRoadmaps.ts       # 3 curated roadmaps (AI, Full-Stack, Data Science)
+        ├── flashcardDecks.ts     # 3 pre-built flashcard decks (14 cards total)
+        └── badgesData.ts         # 12 achievement badges with progress tracking
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Frontend** | React 19 + TypeScript 5.8 | UI framework with strict typing |
+| **Build** | Vite 6 | Fast HMR dev server & production bundler |
+| **Styling** | Tailwind CSS 4 | Utility-first CSS via Vite plugin |
+| **Animation** | Framer Motion (`motion/react`) | Page transitions, spring physics, AnimatePresence |
+| **Backend** | Express.js 4 | REST API server + SPA static hosting |
+| **Real-time** | Socket.io 4 | WebSocket chat, presence, reactions |
+| **AI** | Google Gemini 3.7 Flash | Roadmap, quiz, flashcard, and tutor generation |
+| **Icons** | Lucide React | Consistent icon library (40+ icons used) |
+| **Effects** | canvas-confetti | Celebration particles on achievements |
+| **Fonts** | Plus Jakarta Sans | Modern geometric sans-serif (Google Fonts) |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js 18+** (recommended: 20+)
+- **npm** or compatible package manager
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/LearnPath-AI.git
+cd LearnPath-AI
+
+# Install dependencies
+npm install
+
+# (Optional) Configure Gemini API key
+cp .env.example .env
+# Edit .env and add your GEMINI_API_KEY
+```
+
+### Development
+
+```bash
+# Start dev server with hot reload
+npm run dev
+```
+
+Open **http://localhost:3000** in your browser.
+
+> The app runs fully offline with intelligent fallbacks when no Gemini API key is configured.
+
+### Production Build
+
+```bash
+# Build frontend + bundle server
+npm run build
+
+# Start production server
+npm start
+```
+
+### Type Checking
+
+```bash
+# Run TypeScript type checker
+npm run lint
+```
+
+---
+
+## 📡 API Reference
+
+### Authentication
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/register` | POST | Create new account (name, email, password, targetRole) |
+| `/api/auth/login` | POST | Sign in (email, password) — auto-creates account if not found |
+| `/api/auth/me` | GET | Verify session token (Bearer auth header) |
+| `/api/auth/update-profile` | POST | Update user profile fields |
+| `/api/auth/logout` | POST | Sign out |
+| `/api/auth/forgot-password` | POST | Simulated password reset |
+
+### AI Generation
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/generate-roadmap` | POST | Generate personalized learning roadmap via Gemini |
+| `/api/ai-tutor` | POST | Chat with AI mentor (context-aware explanations) |
+| `/api/generate-quiz` | POST | Generate MCQ quiz on any topic/difficulty |
+| `/api/ai-explain-topic` | POST | Generate in-depth study guide flashcard |
+| `/api/generate-flashcard-deck` | POST | Generate 5-card study deck on any topic |
+
+### Leaderboard
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/leaderboard` | GET | Fetch ranked leaderboard (query: `track`, `timeframe`) |
+| `/api/leaderboard/sync` | POST | Sync current user stats to leaderboard |
+
+### System
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/health` | GET | Health check (returns AI status) |
+
+### Socket.io Events
+
+| Event | Direction | Description |
+|-------|-----------|-------------|
+| `join_room` | Client → Server | Join a study room with user profile |
+| `chat_history` | Server → Client | Receive room message history |
+| `send_message` | Client → Server | Send message with optional code snippet |
+| `receive_message` | Server → Client | New message broadcast |
+| `toggle_reaction` | Client → Server | Add/remove emoji reaction |
+| `reaction_updated` | Server → Client | Updated reactions for a message |
+| `typing` / `user_typing` | Bidirectional | Typing indicators |
+| `room_users` | Server → Client | Active users in current room |
+
+---
+
+## 🎮 Gamification System
 
 ```mermaid
 flowchart LR
-    E[Learning Event] --> XP[XP Engine<br/>base + bonus + multiplier]
-    XP --> D{Duplicate?}
-    D -- "Yes" --> Z[0 XP]
-    D -- "No" --> L[XP Ledger<br/>immutable transaction]
-    L --> LV[Level Calculator]
-    LV --> B[Badge Engine<br/>18 deterministic badges]
-    B --> LB[Leaderboard Update]
-    LB --> C[Weekly Challenge Progress]
-    C --> S[Streak Tracking]
+    E["Learning Event"] --> XP["XP Engine\nBase + Bonus"]
+    XP --> D{"Duplicate?"}
+    D -->|Yes| Z["0 XP"]
+    D -->|No| L["XP Ledger"]
+    L --> LV["Level Calculator"]
+    LV --> B["Badge Engine\n12 Deterministic Badges"]
+    B --> LB["Leaderboard Update"]
+    LB --> C["Streak Tracking"]
+```
+
+### XP Rewards
+
+| Action | XP Earned |
+|--------|-----------|
+| Generate a roadmap | +150 |
+| Complete a phase | +50 |
+| Pass a quiz | +100 + (score × 50) |
+| Master a flashcard | +50 |
+| Send a discussion message | Triggers badge check |
+| Badge unlock | +100 to +1000 (varies by rarity) |
+
+### Badge Categories
+
+| Category | Badges | Rarity Range |
+|----------|--------|-------------|
+| Roadmaps | Pioneer Architect, Phase Conqueror, Curriculum Graduate | Bronze → Diamond |
+| Quizzes | Quiz Master, Technical Evaluator | Silver → Gold |
+| Flashcards | Memory Guru, Grandmaster Recall | Silver → Platinum |
+| Streaks | Streak Champion | Gold |
+| Community | Discussion Catalyst | Bronze |
+| Mentor | AI Collaborator | Bronze |
+| XP | Deep Work Champion, Top 10 Contender | Gold |
+
+---
+
+## 🖥️ Frontend Pages
+
+```mermaid
+flowchart TD
+    Home["🏠 Home\nLanding page with video hero,\nskill tracks, quick search"]
+    Auth["🔐 Auth\nSign in / Register with\nfeature gating modal"]
+    Generator["🔧 Generator\n3-step wizard:\nSkill → Level → Schedule"]
+    Roadmap["🗺️ Roadmap\nInteractive milestone tracker\nwith phase completion"]
+    Quiz["📝 Quiz\nAI-generated MCQs with\nkeyboard shortcuts & scoring"]
+    Flashcards["🃏 Flashcards\nFlip-card study system\nwith AI deck generation"]
+    Mentor["🧠 Mentor\nAI chat tutor with speech\nsynthesis & code sharing"]
+    Discussions["💬 Discussions\nReal-time Socket.io study rooms\nwith code snippets & reactions"]
+    Leaderboard["🏆 Leaderboard\nXP rankings with track\nand timeframe filtering"]
+    Explore["🔍 Explore\nCurated roadmap catalog\nwith search & filtering"]
+    Dashboard["📊 Dashboard\nStats, badges, saved roadmaps\n& completion certificates"]
+
+    Home --> Auth
+    Home --> Generator
+    Auth --> Generator
+    Generator --> Roadmap
+    Roadmap --> Quiz
+    Roadmap --> Flashcards
+    Roadmap --> Mentor
+    Dashboard --> Discussions
+    Dashboard --> Leaderboard
+    Dashboard --> Explore
+    Explore --> Roadmap
 ```
 
 ---
 
-## Deployment
-
-### Docker (Recommended)
-
-```bash
-# Build and run with Docker Compose
-docker-compose up -d --build
-
-# Or build manually
-docker build -t learnpath-ai .
-docker run -d -p 8765:8765 --name learnpath learnpath-ai
-```
-
-The app runs at **http://localhost:8765** with 4 Uvicorn workers. Data persists in a Docker volume.
-
-### Manual Production
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-cd frontend-v2 && npm install && npm run build && cd ..
-
-# Run with multiple workers
-python -m uvicorn app.server:app --host 0.0.0.0 --port 8765 --workers 4
-```
+## 🔧 Configuration
 
 ### Environment Variables
 
 | Variable | Default | Description |
-|---|---|---|
-| `LLM_PROVIDER` | `local` | `local` or `openai` |
-| `OPENAI_API_KEY` | — | OpenAI API key (optional) |
-| `DATABASE_PATH` | `data/learnpath.db` | SQLite database path |
-| `LOG_LEVEL` | `INFO` | Logging level |
+|----------|---------|-------------|
+| `GEMINI_API_KEY` | _(empty)_ | Google Gemini API key (optional — app works offline without it) |
 
-### Health Check
+> All AI features have intelligent fallback engines that generate domain-aware content when the API is unavailable.
 
-```bash
-curl http://localhost:8765/api/health
-# → {"status": "ok"}
-```
+### Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Vite dev server with HMR on port 3000 |
+| `npm run build` | Build frontend + bundle server to `dist/` |
+| `npm start` | Run production server from `dist/server.cjs` |
+| `npm run lint` | Run TypeScript type checker (`tsc --noEmit`) |
 
 ---
 
-## License
+## 🎨 UI Design System
+
+The app uses a **dark space theme** with:
+
+- **Background**: Deep navy-to-black gradients (`#040e21` base)
+- **Cards**: Glassmorphism with `backdrop-blur-xl` and subtle borders (`border-white/10`)
+- **Accents**: Indigo → Purple → Pink gradient spectrum
+- **Typography**: Plus Jakarta Sans (300–800 weights)
+- **Animations**: Framer Motion spring physics, `AnimatePresence mode="wait"` page transitions
+- **Effects**: Canvas-confetti on achievements, animated particle backgrounds, video hero
+
+---
+
+## 📄 License
 
 MIT
-
----
-
-Built for **HCLAmplified Round 2**: *AI-Powered Personalized Learning Path Recommender*.
+      
