@@ -208,7 +208,7 @@ LearnPath-AI/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/LearnPath-AI.git
+git clone https://github.com/snehakumari9696/LearnPath-AI.git
 cd LearnPath-AI
 
 # Install dependencies
